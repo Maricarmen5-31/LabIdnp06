@@ -7,16 +7,20 @@
     tools:context=".BarChartActivity">
 
     <TextView
-        android:id="@+id/tvDatos"
+        android:id="@+id/textViewEtiquetaX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/buttonVerPieChart"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="39dp"
-        android:text="Hello World!"
+        android:layout_marginStart="34dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="24dp"
+        android:text="Etiqueta X"
+        android:textAlignment="center"
+        android:textColor="#CA7F11"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,21 +29,19 @@
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="416dp"
-        android:layout_above="@+id/tvDatos"
-        android:layout_below="@+id/textViewTitulo"
+        android:layout_height="315dp"
+        android:layout_below="@+id/textViewEtiquetaY"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="61dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="-2dp"
         android:contentDescription="Grafico de barras">
 
         <com.example.labidnp06.BarChart
             android:id="@+id/viewBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
             android:orientation="vertical" />
     </HorizontalScrollView>
 
@@ -70,8 +72,25 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="100dp"
         android:text="Gráfico de Barras"
+        android:textAlignment="center"
         android:textColor="#009688"
         android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewEtiquetaY"
+        android:layout_width="335dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewTitulo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="43dp"
+        android:text="Etiqueta Y"
+        android:textAlignment="center"
+        android:textColor="#7D46DF"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
 </RelativeLayout>

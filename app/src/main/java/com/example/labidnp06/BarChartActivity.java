@@ -20,15 +20,16 @@ import org.apache.poi.ss.usermodel.Row;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class BarChartActivity extends AppCompatActivity {
 
     private BarChart barChart;
     private Button buttonVerPie;
-
-    String TAG ="main";
-    private TextView textView;
+    private String TAG ="main";
+    private TextView textViewX;
+    private TextView textViewY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,9 @@ public class BarChartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bar_chart);
 
         barChart = findViewById(R.id.viewBar);
-        textView = findViewById(R.id.tvDatos);
+        textViewX = findViewById(R.id.textViewEtiquetaX);
+        textViewY = findViewById(R.id.textViewEtiquetaY);
+
         LeerDatosExcel(barChart);
 
         buttonVerPie = findViewById(R.id.buttonVerPieChart);
@@ -78,7 +81,6 @@ public class BarChartActivity extends AppCompatActivity {
             Iterator<Row> rowIter = mySheet.rowIterator();
 
             int rownum = 0;
-            String etiquetaX = "", etiquetaY = "";
 
             while (rowIter.hasNext()) {
                 HSSFRow myRow = (HSSFRow) rowIter.next();
@@ -94,14 +96,24 @@ public class BarChartActivity extends AppCompatActivity {
                         }
                         colno++;
                     }
+                } else {
+                    Iterator<Cell> cellIter = myRow.cellIterator();
+                    HSSFCell myCell = (HSSFCell) cellIter.next();
+                    textViewX.setText(myCell.toString());
+                    myCell = (HSSFCell) cellIter.next();
+                    textViewY.setText(myCell.toString());
                 }
                 rownum++;
             }
             barView.setBottomTextList(etiquetasList);
-            barView.setDataList(barraDataList,50);
+            barView.setDataList(barraDataList,getMax(barraDataList));
 
         } catch (Exception e) {
             Log.e(TAG, "error "+ e.toString());
         }
+    }
+
+    public int getMax(ArrayList<Integer> array){
+        return Collections.max(array);
     }
 }

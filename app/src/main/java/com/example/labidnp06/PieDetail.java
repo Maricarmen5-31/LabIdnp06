@@ -19,8 +19,7 @@ public class PieDetail {
     public PieDetail(float percent, int color){
         this(percent, null, color);
     }
-
-
+    
     PieDetail(float percent, String title){
         this(percent, title, 0);
     }
@@ -31,7 +30,6 @@ public class PieDetail {
         this.title = title;
         this.color = color;
     }
-
 
     PieDetail(float startDegree, float endDegree, PieDetail targetPie){
         this.startDegree = startDegree;
@@ -57,7 +55,7 @@ public class PieDetail {
         this.endDegree = endDegree;
     }
 
-    boolean isColorSetted(){return color != 0;}
+    boolean isColorSetted(){ return color != 0; }
 
     boolean isAtRest(){
         return (startDegree==targetStartDegree)&&(endDegree==targetEndDegree);

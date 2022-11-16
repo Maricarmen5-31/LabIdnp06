@@ -9,39 +9,67 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="41dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="92dp"
         android:text="Grafico Circular"
+        android:textAlignment="center"
         android:textColor="#C87E11"
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <com.example.labidnp06.PieChart
-        android:id="@+id/viewPie"
-        android:layout_width="401dp"
-        android:layout_height="351dp"
+    <TextView
+        android:id="@+id/textViewBarTitulo"
+        android:layout_width="266dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="10dp" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="72dp"
+        android:text="Titulo"
+        android:textAlignment="center"
+        android:textColor="#251E1E"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <com.example.labidnp06.PieChart
+        android:id="@+id/viewPie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewBarTitulo"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="9dp" />
 
     <Button
         android:id="@+id/buttonVerBarChart"
         android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="57dp"
         android:layout_marginEnd="52dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="20dp"
         android:text="Ver Grafico de Barras" />
+
+    <TextView
+        android:id="@+id/textViewLeyenda"
+        android:layout_width="wrap_content"
+        android:layout_height="175dp"
+        android:layout_above="@+id/buttonVerBarChart"
+        android:layout_below="@+id/viewPie"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="12dp" />
 
 </RelativeLayout>

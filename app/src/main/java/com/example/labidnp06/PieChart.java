@@ -116,11 +116,8 @@ public class PieChart extends View {
         }else {
             pieHelperList.clear();
         }
-
         removeCallbacks(animator);
         post(animator);
-
-
     }
 
 
@@ -213,7 +210,6 @@ public class PieChart extends View {
             }
             postInvalidate();
         }
-
         return true;
     }
 

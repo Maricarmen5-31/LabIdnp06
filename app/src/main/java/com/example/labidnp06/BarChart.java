@@ -13,23 +13,24 @@ public class BarChart extends View {
 
     private ArrayList<Float> percentList;
     private ArrayList<Float> targetPercentList;
-    private Paint textPaint;
-    private Paint bgPaint;
-    private Paint fgPaint;
-    private Rect rect;
-    private int barWidth;
-    private int bottomTextDescent;
+    private Paint textPaint;            // texto
+    private Paint bgPaint;              // fondo de cada barra
+    private Paint fgPaint;              // para cada barra
+    private Rect rect;                  // para cada barra
+    private int barWidth;               // ancho de la barra
+    private int bottomTextDescent;      //
     private boolean autoSetWidth = true;
     private int topMargin;
     private int bottomTextHeight;
-    private ArrayList<String> bottomTextList = new ArrayList<String>();
-    private final int MINI_BAR_WIDTH;
-    private final int BAR_SIDE_MARGIN;
-    private final int TEXT_TOP_MARGIN;
-    private final int TEXT_COLOR = Color.parseColor("#9B9A9B");
-    private final int BACKGROUND_COLOR = Color.parseColor("#F6F6F6");
-    private final int FOREGROUND_COLOR = Color.parseColor("#FC496D");
+    private ArrayList<String> bottomTextList = new ArrayList<String>();         //lista de las etiquetas del eje x
+    private final int MINI_BAR_WIDTH;           //
+    private final int BAR_SIDE_MARGIN;          //
+    private final int TEXT_TOP_MARGIN;          //
+    private final int TEXT_COLOR = Color.parseColor("#9B9A9B");         //color del texto debajo de cada barra
+    private final int BACKGROUND_COLOR = Color.parseColor("#F6F6F6");   //color de fondo de cada barra
+    private final int FOREGROUND_COLOR = Color.parseColor("#10adb5");   //color de cada barra #FC496D
 
+    // interfaz Runnable
     private Runnable animator = new Runnable() {
         @Override
         public void run() {
@@ -58,27 +59,27 @@ public class BarChart extends View {
     }
     public BarChart(Context context, AttributeSet attrs){
         super(context, attrs);
-        bgPaint = new Paint();
-        bgPaint.setAntiAlias(true);
-        bgPaint.setColor(BACKGROUND_COLOR);
-        fgPaint = new Paint(bgPaint);
-        fgPaint.setColor(FOREGROUND_COLOR);
-        rect = new Rect();
-        topMargin = Metodos.dip2px(context, 5);
-        int textSize = Metodos.sp2px(context, 15);
-        barWidth = Metodos.dip2px(context,22);
-        MINI_BAR_WIDTH = Metodos.dip2px(context,22);
-        BAR_SIDE_MARGIN  = Metodos.dip2px(context,22);
-        TEXT_TOP_MARGIN = Metodos.dip2px(context, 5);
-        textPaint = new Paint();
-        textPaint.setAntiAlias(true);
-        textPaint.setColor(TEXT_COLOR);
-        textPaint.setTextSize(textSize);
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        percentList = new ArrayList<Float>();
+        bgPaint = new Paint();                  // crear barra de fondo
+        bgPaint.setAntiAlias(true);             // suaviza los bordes de lo que se está dibujando
+        bgPaint.setColor(BACKGROUND_COLOR);     // establecer color a la barra del fondo
+        fgPaint = new Paint(bgPaint);           // crear la barra
+        fgPaint.setColor(FOREGROUND_COLOR);     // establecer color de la barra
+        rect = new Rect();                      //
+        topMargin = Metodos.dip2px(context, 5);         //
+        int textSize = Metodos.sp2px(context, 15);       // tamaño del texto
+        barWidth = Metodos.dip2px(context,22);          // ancho de la barra
+        MINI_BAR_WIDTH = Metodos.dip2px(context,22);    // ancho de la barra
+        BAR_SIDE_MARGIN  = Metodos.dip2px(context,22);  //
+        TEXT_TOP_MARGIN = Metodos.dip2px(context, 5);   //
+        textPaint = new Paint();                    //
+        textPaint.setAntiAlias(true);               // suaviza los bordes de lo que se está dibujando
+        textPaint.setColor(TEXT_COLOR);             // establecer color del texto
+        textPaint.setTextSize(textSize);            // establecer tamaño del texto
+        textPaint.setTextAlign(Paint.Align.CENTER); // establecer posición del texto
+        percentList = new ArrayList<Float>();       //
     }
 
-    // Método para poner las etiquetas
+    // Método para poner las etiquetas del eje x
     public void setBottomTextList(ArrayList<String> bottomStringList){
         // this.dataList = null;
         this.bottomTextList = bottomStringList;
@@ -101,7 +102,7 @@ public class BarChart extends View {
         postInvalidate();
     }
 
-    // Metodo para cargar los datos (numero)
+    // Metodo para cargar los datos (numeros)
     public void setDataList(ArrayList<Integer> list, int max){
         targetPercentList = new ArrayList<Float>();
         if(max == 0) max = 1;

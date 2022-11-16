@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -24,16 +25,20 @@ import java.util.Iterator;
 
 public class PieChartActivity extends AppCompatActivity {
 
-    PieChart pieChart;
+    private String TAG ="pie";
+    private PieChart pieChart;
     private Button buttonVerBar;
+    private TextView leyenda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pie_chart);
 
+        leyenda= findViewById(R.id.textViewLeyenda);
         pieChart = findViewById(R.id.viewPie);
-        randomSet(pieChart);
+
+        leerDatosExcel(pieChart);
 
         buttonVerBar = findViewById(R.id.buttonVerBarChart);
         buttonVerBar.setOnClickListener(new View.OnClickListener() {
@@ -45,24 +50,11 @@ public class PieChartActivity extends AppCompatActivity {
         });
     }
 
-    private void randomSet(PieChart pieView){
+    private void leerDatosExcel(PieChart pieView){
+        ArrayList<String> etiquetasList = new ArrayList<String>();
         ArrayList<PieDetail> pieHelperArrayList = new ArrayList<PieDetail>();
         ArrayList<Integer> intList = new ArrayList<Integer>();
-        int totalNum = 14;
-
         int totalInt = 0;
-        /*for(int i=0; i<totalNum; i++){
-            int ranInt = (int)(Math.random()*10)+1;
-            intList.add(ranInt);
-            totalInt += ranInt;
-        }
-        for(int i=0; i<totalNum; i++){
-            pieHelperArrayList.add(new PieDetail(100f*intList.get(i)/totalInt));
-        }
-
-        pieView.selectedPie(PieChart.NO_SELECTED_INDEX);
-        pieView.showPercentLabel(true);
-        pieView.setDate(pieHelperArrayList);*/
 
         try {
             InputStream myInput;
@@ -88,18 +80,16 @@ public class PieChartActivity extends AppCompatActivity {
             int rowno = 0;
 
             while (rowIter.hasNext()) {
-                //Log.e(TAG, " row no "+ rowno );
                 HSSFRow myRow = (HSSFRow) rowIter.next();
                 if(rowno != 0) {
                     Iterator<Cell> cellIter = myRow.cellIterator();
 
                     int colno = 0;
-                    String sno="", date="", det="";
-
                     while (cellIter.hasNext()) {
                         HSSFCell myCell = (HSSFCell) cellIter.next();
                         if (colno==0){
-                            //sno = myCell.toString();
+                            leyenda.append(myCell.toString()+"\n");
+                            etiquetasList.add(myCell.toString());
                         } else if (colno==1){
                             int ranInt = (int)Double.parseDouble(myCell.toString());
                             intList.add(ranInt);
@@ -110,37 +100,15 @@ public class PieChartActivity extends AppCompatActivity {
                 }
                 rowno++;
             }
-            for(int i=0; i<totalNum; i++){
+            for(int i=0; i< intList.size(); i++){
                 pieHelperArrayList.add(new PieDetail(100f*intList.get(i)/totalInt));
             }
         } catch (Exception e) {
-            //Log.e(TAG, "error "+ e.toString());
+            Log.e(TAG, "error "+ e.toString());
         }
 
         pieView.selectedPie(PieChart.NO_SELECTED_INDEX);
         pieView.showPercentLabel(true);
         pieView.setDate(pieHelperArrayList);
-    }
-
-    private void set(PieChart pieView){
-        ArrayList<PieDetail> pieHelperArrayList = new ArrayList<PieDetail>();
-        pieHelperArrayList.add(new PieDetail(20, Color.BLACK));
-        pieHelperArrayList.add(new PieDetail(6));
-        pieHelperArrayList.add(new PieDetail(30));
-        pieHelperArrayList.add(new PieDetail(12));
-        pieHelperArrayList.add(new PieDetail(32));
-
-        pieView.setDate(pieHelperArrayList);
-        pieView.setOnPieClickListener(new PieChart.OnPieClickListener() {
-            @Override
-            public void onPieClick(int index) {
-                if(index != PieChart.NO_SELECTED_INDEX) {
-                    //textView.setText(index + " selected");
-                }else{
-                    //textView.setText("No selected pie");
-                }
-            }
-        });
-        pieView.selectedPie(2);
     }
 }
