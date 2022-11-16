@@ -18,7 +18,6 @@ public class BarChart extends View {
     private Paint fgPaint;
     private Rect rect;
     private int barWidth;
-    //    private boolean showSideMargin = true;
     private int bottomTextDescent;
     private boolean autoSetWidth = true;
     private int topMargin;
@@ -79,10 +78,6 @@ public class BarChart extends View {
         percentList = new ArrayList<Float>();
     }
 
-    /**
-     * dataList will be reset when called is method.
-     * @param bottomStringList The String ArrayList in the bottom.
-     */
     // Método para poner las etiquetas
     public void setBottomTextList(ArrayList<String> bottomStringList){
         // this.dataList = null;
@@ -106,10 +101,7 @@ public class BarChart extends View {
         postInvalidate();
     }
 
-    /**
-     *
-     * @param list The ArrayList of Integer with the range of [0-max].
-     */
+    // Metodo para cargar los datos (numero)
     public void setDataList(ArrayList<Integer> list, int max){
         targetPercentList = new ArrayList<Float>();
         if(max == 0) max = 1;

@@ -41,7 +41,17 @@ public class PieChart extends View {
             Color.parseColor("#AA66CC"),
             Color.parseColor("#99CC00"),
             Color.parseColor("#FFBB33"),
-            Color.parseColor("#FF4444")};
+            Color.parseColor("#FF4444"),
+            Color.parseColor("#ff33e0"),
+            Color.parseColor("#e9ff44"),
+            Color.parseColor("#cd23d9"),
+            Color.parseColor("#33ffb4"),
+            Color.parseColor("#d9237b"),
+            Color.parseColor("#de691b"),
+            Color.parseColor("#33fcff"),
+            Color.parseColor("#e084e3"),
+            Color.parseColor("#93f5bc")
+    };
 
 
     private Runnable animator = new Runnable() {
@@ -147,7 +157,7 @@ public class PieChart extends View {
             if(pieHelper.isColorSetted()){
                 cirPaint.setColor(pieHelper.getColor());
             }else {
-                cirPaint.setColor(DEFAULT_COLOR_LIST[index%5]);
+                cirPaint.setColor(DEFAULT_COLOR_LIST[index%14]);
             }
             canvas.drawArc(rect, pieHelper.getStartDegree(), pieHelper.getSweep(), true, cirPaint);
             drawPercentText(canvas, pieHelper);
